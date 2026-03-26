@@ -1,0 +1,20 @@
+﻿On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	Appendix_Source_Code.md
+	Proposed_System_Report_15_Pages.md
+	System_Study_1_Page.md
+	System_Study_API_Routes_Architecture.md
+	System_Study_Proposed_System_15_Pages.md
+	System_Study_Report.md
+	UML_Diagrams.md
+	git_status.txt
+	git_status_utf8.txt
+	seedit/
+	test_video.mp4
+
+nothing added to commit but untracked files present (use "git add" to track)

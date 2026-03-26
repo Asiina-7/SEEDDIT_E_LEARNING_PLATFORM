@@ -1,0 +1,19 @@
+
+> seedit-elearning@1.0.0 test
+> vitest --run
+
+
+[1m[46m RUN [49m[22m [36mv4.1.0 [39m[90mC:/Users/ELCOT/Downloads/seedit_edu/seedit[39m
+
+ [32m✓[39m pages/__tests__/Login.test.jsx [2m([22m[2m7 tests[22m[2m)[22m[33m 3190[2mms[22m[39m
+     [33m[2m✓[22m[39m renders initial form correctly with default student role [33m 323[2mms[22m[39m
+     [33m[2m✓[22m[39m handles successful login for generic user [33m 741[2mms[22m[39m
+     [33m[2m✓[22m[39m handles successful login for admin [33m 567[2mms[22m[39m
+     [33m[2m✓[22m[39m displays error message on failed login [33m 611[2mms[22m[39m
+     [33m[2m✓[22m[39m redirects to verify-email on UnverifiedError [33m 684[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m7 passed[39m[22m[90m (7)[39m
+[2m   Start at [22m 06:01:31
+[2m   Duration [22m 6.97s[2m (transform 190ms, setup 242ms, import 709ms, tests 3.19s, environment 2.39s)[22m
+

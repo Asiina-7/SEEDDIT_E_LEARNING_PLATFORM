@@ -1,0 +1,6 @@
+
+{
+  "name": "Seedit - Grow Your Skills",
+  "description": "A comprehensive e-learning platform with 15+ course categories, progress tracking, professional certification generation, and a Gemini-powered AI learning assistant.",
+  "requestFramePermissions": ["microphone"]
+}
