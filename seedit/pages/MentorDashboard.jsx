@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout, Users, BookOpen, Clock, Settings, LogOut, Search, Bell, ChevronRight, BarChart3, Star, Award, Plus, X, Video, FileText, Loader2 } from 'lucide-react';
 import authService from '../services/authService';
 import courseService from '../services/courseService';
+import { toBackendUrl } from '../services/api';
 
 const MentorDashboard = () => {
     const navigate = useNavigate();
@@ -87,13 +88,13 @@ const MentorDashboard = () => {
             let thumbnailUrl = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80'; // default
             if (thumbnailFile) {
                 const uploadedUrl = await courseService.uploadFile(thumbnailFile);
-                thumbnailUrl = `http://localhost:5000${uploadedUrl}`;
+                thumbnailUrl = toBackendUrl(uploadedUrl);
             }
 
             // Upload videos
             const uploadedVideos = await Promise.all(validVideos.map(async (v, index) => {
                 const videoUrlPath = await courseService.uploadFile(v.file);
-                const videoUrlFull = `http://localhost:5000${videoUrlPath}`;
+                const videoUrlFull = toBackendUrl(videoUrlPath);
                 return {
                     id: `v${Date.now()}-${index}`,
                     title: v.title,
@@ -107,7 +108,7 @@ const MentorDashboard = () => {
             const validResources = resourcesList.filter(r => r.title && r.file);
             const uploadedResources = await Promise.all(validResources.map(async (r, index) => {
                 const resPath = await courseService.uploadFile(r.file);
-                const resourceUrlFull = `http://localhost:5000${resPath}`;
+                const resourceUrlFull = toBackendUrl(resPath);
                 return {
                     id: `r${Date.now()}-${index}`,
                     title: r.title,

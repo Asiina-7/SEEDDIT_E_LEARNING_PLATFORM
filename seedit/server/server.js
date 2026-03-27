@@ -8,7 +8,28 @@ const connectDB = require('./config/db');
 
 
 const app = express();
-app.use(cors());
+const allowedOrigins = (process.env.CLIENT_URLS || process.env.CLIENT_URL || '')
+    .split(',')
+    .map(origin => origin.trim())
+    .filter(Boolean);
+
+app.use(cors({
+    origin(origin, callback) {
+        // Allow server-to-server requests, health checks, and local tools without an Origin header.
+        if (!origin) {
+            return callback(null, true);
+        }
+
+        if (
+            allowedOrigins.length === 0 ||
+            allowedOrigins.includes(origin)
+        ) {
+            return callback(null, true);
+        }
+
+        return callback(new Error(`CORS blocked for origin: ${origin}`));
+    }
+}));
 app.use(express.json());
 
 // Serve uploads statically
@@ -48,6 +69,10 @@ app.get('/api/test', (req, res) => {
     res.json({ message: 'Backend is working!', timestamp: new Date() });
 });
 
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 
 
 
@@ -59,6 +84,7 @@ const startServer = async () => {
         const PORT = process.env.PORT || 5000;
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
+            console.log(`Allowed client origins: ${allowedOrigins.length > 0 ? allowedOrigins.join(', ') : 'all origins'}`);
         });
     } catch (error) {
         console.error('Failed to start server:', error);
