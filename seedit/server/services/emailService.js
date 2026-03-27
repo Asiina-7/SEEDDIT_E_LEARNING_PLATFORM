@@ -107,7 +107,50 @@ const sendPasswordResetEmail = async (email, name, verificationCode) => {
     }
 };
 
+/**
+ * Send contact form email to admin
+ * @param {string} name - Sender name
+ * @param {string} email - Sender email
+ * @param {string} subject - Message subject
+ * @param {string} message - Message content
+ */
+const sendContactEmail = async (name, email, subject, message) => {
+    try {
+        const mailOptions = {
+            from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
+            to: process.env.EMAIL_USER, // Send TO the admin
+            replyTo: email, // Reply-to the student
+            subject: `[Contact Form] ${subject} - from ${name}`,
+            html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                    <div style="background-color: #10b981; padding: 20px; text-align: center;">
+                        <h1 style="color: white; margin: 0;">New Contact Message</h1>
+                    </div>
+                    <div style="padding: 30px; background-color: #fff;">
+                        <p><strong>From:</strong> ${name} (${email})</p>
+                        <p><strong>Subject:</strong> ${subject}</p>
+                        <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; border-left: 4px solid #10b981; margin: 20px 0;">
+                            <p style="margin: 0; white-space: pre-wrap;">${message}</p>
+                        </div>
+                        <p style="font-size: 12px; color: #9ca3af; text-align: center; margin-top: 30px;">
+                            This message was sent from the Seedit Contact Form.
+                        </p>
+                    </div>
+                </div>
+            `,
+        };
+
+        await transporter.sendMail(mailOptions);
+        console.log(`Contact email from ${email} sent to admin`);
+        return true;
+    } catch (error) {
+        console.error('Error sending contact email:', error);
+        throw error;
+    }
+};
+
 module.exports = {
     sendVerificationEmail,
     sendPasswordResetEmail,
+    sendContactEmail,
 };

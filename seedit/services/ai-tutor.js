@@ -1,35 +1,23 @@
-import Groq from 'groq-sdk';
+import API from './api';
 
+/**
+ * Get AI Tutor response by calling the backend proxy
+ * @param {string} question - Student's question
+ * @param {string} context - Current lesson context
+ * @returns {Promise<string>} - AI response text
+ */
 export const getAITutorResponse = async (question, context) => {
-  const groq = new Groq({
-    apiKey: import.meta.env.VITE_GROQ_API_KEY,
-    dangerouslyAllowBrowser: true
-  });
-
   try {
-    const completion = await groq.chat.completions.create({
-      messages: [
-        {
-          role: "system",
-          content: `You are a friendly and helpful tutor for the Seedit e-learning platform. Keep responses concise (2-3 sentences), educational, and encouraging. 
-          
-Course Context: ${context}
-
-Provide clear explanations tailored to help students understand the material better.`
-        },
-        {
-          role: "user",
-          content: question
-        }
-      ],
-      model: "mixtral-8x7b-32768",
-      max_tokens: 400,
-      temperature: 0.7
+    const response = await API.post('/ai/chat', {
+      message: question,
+      // Provide context as part of the message or history if the backend supports it
+      // For now, we prepend context to the message to ensure the model sees it
+      message: `[Context: ${context}] ${question}`
     });
 
-    return completion.choices[0]?.message?.content || "I'd be happy to help with that question. Could you provide more details?";
+    return response.data.response || "I'd be happy to help with that question. Could you provide more details?";
   } catch (error) {
-    console.error("Groq Error:", error);
+    console.error("AI Tutor Proxy Error:", error);
 
     // Fallback to helpful response if API fails
     const fallbackResponses = [
@@ -40,7 +28,7 @@ Provide clear explanations tailored to help students understand the material bet
       "Let me break this down for you in simple terms..."
     ];
 
-    const response = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
-    return `${response}`;
+    const randomIndex = Math.floor(Math.random() * fallbackResponses.length);
+    return fallbackResponses[randomIndex];
   }
 };

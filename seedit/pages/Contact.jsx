@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import API from '../services/api';
 
 const Contact = () => {
   const [formState, setFormState] = useState('idle');
@@ -26,24 +27,14 @@ const Contact = () => {
     setFormState('sending');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          from_name: 'Seedit Contact Form'
-        })
+      const response = await API.post('/contact', {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message
       });
 
-      const result = await response.json();
-      if (result.success) {
+      if (response.data.success) {
         setFormState('sent');
         setFormData({ name: '', email: '', subject: 'General Inquiry', message: '' });
       } else {

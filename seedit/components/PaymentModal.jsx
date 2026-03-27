@@ -6,6 +6,12 @@ const PaymentModal = ({ course, onSuccess, onCancel }) => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
 
+    useEffect(() => {
+        if (course) {
+            handlePayment();
+        }
+    }, [course]);
+
     const loadRazorpay = () => {
         return new Promise((resolve) => {
             const script = document.createElement('script');

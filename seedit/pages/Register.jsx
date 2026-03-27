@@ -143,7 +143,7 @@ const Register = () => {
                                     required
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className={`block w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 ${role === 'student' ? 'focus:ring-emerald-500/20 focus:border-emerald-500' : 'focus:ring-indigo-500/20 focus:border-indigo-500'} transition-all duration-300`}
+                                    className={`block w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl text-slate-900 focus:outline-none focus:ring-2 ${role === 'student' ? 'focus:ring-emerald-500/20 focus:border-emerald-500' : 'focus:ring-indigo-500/20 focus:border-indigo-500'} transition-all duration-300`}
                                 />
                             </div>
                         </div>
@@ -165,7 +165,7 @@ const Register = () => {
                                         required
                                         value={formData.password}
                                         onChange={handleChange}
-                                        className={`block w-full pl-11 pr-10 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 ${role === 'student' ? 'focus:ring-emerald-500/20 focus:border-emerald-500' : 'focus:ring-indigo-500/20 focus:border-indigo-500'} transition-all duration-300`}
+                                        className={`block w-full pl-11 pr-10 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl text-slate-900 focus:outline-none focus:ring-2 ${role === 'student' ? 'focus:ring-emerald-500/20 focus:border-emerald-500' : 'focus:ring-indigo-500/20 focus:border-indigo-500'} transition-all duration-300`}
                                     />
                                     <button
                                         type="button"
@@ -192,7 +192,7 @@ const Register = () => {
                                         required
                                         value={formData.confirmPassword}
                                         onChange={handleChange}
-                                        className={`block w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 ${role === 'student' ? 'focus:ring-emerald-500/20 focus:border-emerald-500' : 'focus:ring-indigo-500/20 focus:border-indigo-500'} transition-all duration-300`}
+                                        className={`block w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl text-slate-900 focus:outline-none focus:ring-2 ${role === 'student' ? 'focus:ring-emerald-500/20 focus:border-emerald-500' : 'focus:ring-indigo-500/20 focus:border-indigo-500'} transition-all duration-300`}
                                     />
                                 </div>
                             </div>

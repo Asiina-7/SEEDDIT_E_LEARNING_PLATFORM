@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: "/SEEDDIT_E_LEARNING_PLATFORM/",
+  base: "./",
   server: {
     port: 5173,
     strictPort: true,
