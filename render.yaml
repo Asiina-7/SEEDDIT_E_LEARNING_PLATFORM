@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: seedit-backend
+    runtime: node
+    rootDir: seedit/server
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        value: https://asiina-7.github.io/SEEDDIT_E_LEARNING_PLATFORM
+      - key: CLIENT_URLS
+        value: https://asiina-7.github.io/SEEDDIT_E_LEARNING_PLATFORM,http://localhost:5173
+      - key: EMAIL_SERVICE
+        value: gmail
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
